@@ -1,0 +1,11 @@
+.vbox{
+    -fx-background-color: aliceblue;
+}
+.jfx-button{
+    -fx-background-color: black;
+    -fx-text-fill: aliceblue;
+}
+
+.jfx-button:hover{
+    -fx-background-color: goldenrod;
+}
