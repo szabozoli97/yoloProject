@@ -17,14 +17,13 @@ public final class DatabaseHandler {
     }
 
     void createConnection(){
-        try
-        {
+        try {
             Class.forName("org.h2.Driver");
             conn = DriverManager.getConnection(DB_URL);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Exception at setup: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Exception at setup: " + e.getMessage());
         }
     }
 
@@ -44,7 +43,7 @@ public final class DatabaseHandler {
                         + "             )");
             }
         } catch (SQLException e) {
-            System.out.println("Table " + tableName + " already exists. TABLES ARE READY!");
+            System.err.println("Exception at setup: " + e.getMessage());
         }
     }
 
@@ -83,7 +82,7 @@ public final class DatabaseHandler {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
         } catch (SQLException e) {
-            System.out.println("Exception at executeQuery: " + e.getMessage());
+            System.err.println("Exception at executeQuery: " + e.getMessage());
             return null;
         }
         return rs;
@@ -95,7 +94,7 @@ public final class DatabaseHandler {
             stmt.execute(query);
             return true;
         } catch (SQLException e) {
-            System.out.println("Exception at executeQuery: " + e.getMessage());
+            System.err.println("Exception at executeQuery: " + e.getMessage());
             return false;
         }
 

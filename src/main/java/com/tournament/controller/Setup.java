@@ -58,11 +58,11 @@ public class Setup implements Initializable {
             String playerID = null;
 
             String playerName = playerName_fld.getText();
-            String birth = birth_pck.getValue().toString();     //TO-DO: Exception -> date not picked!
+            String birth = birth_pck.getValue() == null ? "" : birth_pck.getValue().toString();     //TO-DO: Exception -> date not picked!
             String teamID = teamID_fld2.getText();
-            System.out.println(playerName+birth+teamID);
+            System.out.println(playerName+ " " +birth + "  " + teamID);
 
-            if (playerName.isEmpty()|| teamID.isEmpty())
+            if (playerName.isEmpty()|| teamID.isEmpty() || birth.isEmpty())
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -75,7 +75,7 @@ public class Setup implements Initializable {
             String sqlQuery = "INSERT INTO PLAYER VALUES ("
                                     +  null + ","
                                     + "'" + playerName + "'" + ","
-                                    + birth + ","
+                                    + "'" + birth  + "'" + ","
                                     + Integer.parseInt(teamID)
                                     + ")";
             if (databaseHandler.executeAction(sqlQuery))
